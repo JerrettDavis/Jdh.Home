@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:viewModels="clr-namespace:Jdh.Home.Mobile.ViewModels;assembly=Jdh.Home.Mobile"
+      BindingContext="{Binding Source={x:Static viewModels:DesignTimeViewModelLocator.ScanningWifiViewModel}}"
+      Visual="Material"
+      x:Class="Jdh.Home.Mobile.Views.Dialogs.ScanningWifi">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <BoxView />
+    <ActivityIndicator IsRunning="True"
+                       Color="{DynamicResource PrimaryColor}"
+                       Grid.Row="0" />
+    <Label HorizontalTextAlignment="Center" 
+           Text="Looking for the device..."
+           TextColor="{DynamicResource PrimaryTextColor}"
+           Margin="20,0,20,10"
+           FontSize="Medium"
+           Grid.Row="1"/>
+    <Button Text="Cancel Search" 
+            Command="{Binding CloseCommand}"
+            TextColor="{DynamicResource ButtonPrimaryTextColor}"
+            BackgroundColor="{DynamicResource PrimaryColor}"
+            HorizontalOptions="Center"
+            Margin="0,0,0,10"
+            Grid.Row="2"/>
+</Grid>

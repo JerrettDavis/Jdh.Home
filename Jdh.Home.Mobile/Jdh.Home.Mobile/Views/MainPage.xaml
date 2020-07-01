@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Jdh.Home.Mobile.ViewModels;assembly=Jdh.Home.Mobile"
+             BindingContext="{Binding Source={x:Static viewModels:DesignTimeViewModelLocator.MainPageViewModel}}"
+             Title="Devices"
+             Padding="10, 0"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             Visual="Material"
+             x:Class="Jdh.Home.Mobile.Views.MainPage">
+
+    <StackLayout>
+        <NavigationPage.TitleView>
+            <Label Text="Devices" TextColor="{DynamicResource PrimaryTextColor}" />
+        </NavigationPage.TitleView>
+        <!-- Place new controls here -->
+        <Label Text="You don't currently have any devices. Add one to get started."
+               TextColor="{DynamicResource PrimaryTextColor}"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
+        <Button Text="Add Device"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource ButtonPrimaryTextColor}"
+                Margin="16,0,16,32"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="/NavigationPage/MainPage/AddDevice" />
+    </StackLayout>
+
+</ContentPage>

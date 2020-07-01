@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Jdh.Home.Mobile.Themes.DarkTheme">
+    <Style TargetType="BoxView" x:Key="PrismDialogMaskStyle">
+        <Setter Property="BackgroundColor" Value="Black" />
+        <Setter Property="Opacity" Value="0.5" />
+    </Style>
+    <Color x:Key="PageBackgroundColor">#121212</Color>
+    <Color x:Key="NavigationBarColor">#1f1f1f</Color>
+    <Color x:Key="PrimaryColor">#BB86FC</Color>
+    <Color x:Key="SecondaryColor">#03DAC5</Color>
+    <Color x:Key="PrimaryTextColor">#ffffff</Color>
+    <Color x:Key="SecondaryTextColor">#ffffff</Color>
+    <Color x:Key="TertiaryTextColor">WhiteSmoke</Color>
+    <Color x:Key="ButtonPrimaryTextColor">Black</Color>
+    <Color x:Key="TransparentColor">Transparent</Color>
+    <!-- Pallete -->
+    <!-- ReSharper disable once InconsistentNaming -->
+    <Color x:Key="primary-back-title-color">#1f1f1f</Color>
+    <!-- ReSharper disable once InconsistentNaming -->
+    <Color x:Key="primary-title-color">#ffffff</Color>
+    <!-- Pallete-end -->
+    <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{StaticResource Key=primary-back-title-color}"/>
+        <Setter Property="BarTextColor" Value="{StaticResource Key=primary-title-color}"/>
+    </Style>
+</ResourceDictionary>

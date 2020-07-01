@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Jdh.Home.Mobile.ViewModels;assembly=Jdh.Home.Mobile"
+             xmlns:behaviors="http://prismlibrary.com"
+             BindingContext="{Binding Source={x:Static viewModels:DesignTimeViewModelLocator.AddDeviceViewModel}}"
+             x:Class="Jdh.Home.Mobile.Views.AddDevice"
+             xmlns:c="clr-namespace:Jdh.Home.Mobile.Converters;assembly=Jdh.Home.Mobile"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             Visual="Material"
+             Title="Add Device">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <c:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgs"></c:ItemTappedEventArgsConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView 
+                x:Name="DeviceList"
+                ItemsSource="{Binding Devices}"
+                SelectionMode="None"
+                HasUnevenRows="True">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemTapped" 
+                                                      Command="{Binding SelectDeviceTapped}"
+                                                      EventArgsConverter="{StaticResource ItemTappedEventArgs}"/>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2"
+                                       Source="{Binding ImageUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="60"
+                                       WidthRequest="60" />
+                                <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       Text="{Binding Name}"
+                                       TextColor="{DynamicResource PrimaryTextColor}"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"/>
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding Model}"
+                                       TextColor="{DynamicResource PrimaryTextColor}"
+                                       FontSize="Subtitle"
+                                       VerticalOptions="End" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Jdh.Home.Mobile.ViewModels;assembly=Jdh.Home.Mobile"
+             xmlns:behaviors="http://prismlibrary.com"
+             BindingContext="{Binding Source={x:Static viewModels:DesignTimeViewModelLocator.ConnectToDeviceViewModel}}"
+             x:Class="Jdh.Home.Mobile.Views.ConnectToDevice"
+             xmlns:c="clr-namespace:Jdh.Home.Mobile.Converters;assembly=Jdh.Home.Mobile"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             Visual="Material"
+             Title="Connect to Device">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <c:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgs"></c:ItemTappedEventArgsConverter>
+            <c:WifiImageConverter x:Key="WifiImageConverter"></c:WifiImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding DeviceWifiSignals}"
+                      SelectionMode="None">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemTapped" 
+                                                      Command="{Binding ConnectToWifiCommand}"
+                                                      EventArgsConverter="{StaticResource ItemTappedEventArgs}"/>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2"
+                                       Source="{Binding Level, Converter={StaticResource WifiImageConverter}}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="60"
+                                       WidthRequest="60" />
+                                <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       Text="{Binding Ssid}"
+                                       TextColor="{DynamicResource PrimaryTextColor}"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Search Again" 
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource ButtonPrimaryTextColor}"
+                    IsEnabled="{Binding ScanningWifi}"
+                    Margin="16,0,16,32"
+                    Command="{Binding ScanWifiCommand}" />
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
